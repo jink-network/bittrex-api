@@ -29,6 +29,9 @@ class CurlHttpClient implements HttpClient
             curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         }
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
         $response = curl_exec($ch);
 
         $this->checkExceptions($ch);
@@ -47,6 +50,9 @@ class CurlHttpClient implements HttpClient
     {
         $ch = curl_init($url);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_HTTPPROXYTUNNEL, true);
         curl_setopt($ch, CURLOPT_POST, true);
 
         if (!empty($headers)) {
